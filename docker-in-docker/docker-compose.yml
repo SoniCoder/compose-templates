@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dind:
+    image: docker:dind
+    container_name: dind-container
+    privileged: true
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    volumes:
+      - dind-certs:/certs
+      - dind-data:/var/lib/docker
+    ports:
+      - "2376:2376"
+
+volumes:
+  dind-certs:
+  dind-data:
